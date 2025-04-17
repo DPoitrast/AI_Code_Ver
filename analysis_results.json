@@ -1,0 +1,53 @@
+{
+  "url": "https://developer.mozilla.org",
+  "score": 85.71428571428571,
+  "passed": 6,
+  "total": 7,
+  "checks": [
+    {
+      "Rule": "Semantic HTML",
+      "Pass": true,
+      "Details": "Semantic HTML tags found.",
+      "Status": "\u2705"
+    },
+    {
+      "Rule": "Schema.org Markup",
+      "Pass": false,
+      "Details": "Add Schema.org structured data.",
+      "Status": "\u274c"
+    },
+    {
+      "Rule": "Headings Structure",
+      "Pass": true,
+      "Details": "13 heading tags found.",
+      "Status": "\u2705"
+    },
+    {
+      "Rule": "Alt Text for Images",
+      "Pass": true,
+      "Details": "All images have alt text.",
+      "Status": "\u2705"
+    },
+    {
+      "Rule": "Lists/Tables",
+      "Pass": true,
+      "Details": "15 lists, 0 tables found.",
+      "Status": "\u2705"
+    },
+    {
+      "Rule": "Language Attribute",
+      "Pass": true,
+      "Details": "lang attribute present on html tag.",
+      "Status": "\u2705"
+    },
+    {
+      "Rule": "Transcripts/Captions",
+      "Pass": true,
+      "Details": "Multimedia elements have ARIA labels/titles/captions.",
+      "Status": "\u2705"
+    }
+  ],
+  "recommendations": [
+    "Schema.org Markup: Add Schema.org structured data."
+  ]
+}
