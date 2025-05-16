@@ -13,7 +13,7 @@ BEST_PRACTICES = [
     {"id": 4, "category": "Alt Text for Images", "description": "Descriptive alt text on all <img> tags."},
     {"id": 5, "category": "Use Lists and Tables", "description": "Proper HTML lists/tables with headers."},
     {"id": 6, "category": "Language Attribute", "description": "Specify the lang attribute on <html> tag."},
-    {"id": 7, "category": "Text Transcripts/AR Captions", "description": "Provide transcripts and/or captions for video and audio."},
+    {"id": 7, "category": "Transcripts/Captions", "description": "Provide transcripts and/or captions for video and audio."},
 ]
 
 # ========== EVALUATION FUNCTIONS ==========
