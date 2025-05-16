@@ -13,7 +13,11 @@ def check_semantic_html(soup):
 def check_schema_markup(soup):
     # Simple check: look for JSON-LD scripts containing 'schema.org'
     schema = soup.find_all("script", type="application/ld+json")
-    found = any("schema.org" in script.text for script in schema)
+    found = any(
+        "schema.org" in script.text.lower()
+        for script in schema
+        if script.text
+    )
     return found, "Schema.org markup present." if found else "Add Schema.org structured data."
 
 def check_headings_structure(soup):

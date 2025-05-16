@@ -27,7 +27,10 @@ def check_schema_markup(soup):
     # Check for JSON-LD or Microdata schema.org structured data
     # JSON-LD
     script_ld = soup.find_all("script", type="application/ld+json")
-    found_json_ld = any("schema.org" in script.text for script in script_ld)
+    found_json_ld = any(
+        "schema.org" in (script.text or "").lower()
+        for script in script_ld
+    )
     # Microdata
     tags_microdata = soup.find_all(attrs={ 'itemscope': True })
     found_microdata = any(
