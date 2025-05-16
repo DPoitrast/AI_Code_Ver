@@ -27,7 +27,7 @@ def check_schema_markup(soup):
     # Check for JSON-LD or Microdata schema.org structured data
     # JSON-LD
     script_ld = soup.find_all("script", type="application/ld+json")
-    found_json_ld = any("schema.org" in script.text for script in script_ld)
+    found_json_ld = any("schema.org" in script.text.lower() for script in script_ld)
     # Microdata
     tags_microdata = soup.find_all(attrs={ 'itemscope': True })
     found_microdata = any(
@@ -52,8 +52,10 @@ def check_headings_structure(soup):
 
 def check_alt_text(soup):
     images = soup.find_all("img")
+    if not images:
+        return True, "No images found."
     images_missing_alt = [img for img in images if not img.has_attr('alt') or not img['alt'].strip()]
-    found = len(images_missing_alt) == 0 and len(images) > 0
+    found = len(images_missing_alt) == 0
     return found, "All images have alt text." if found else f"{len(images_missing_alt)} images missing alt text."
 
 def check_lists_and_tables(soup):

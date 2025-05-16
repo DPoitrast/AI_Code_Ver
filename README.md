@@ -71,6 +71,16 @@ The tool evaluates websites based on the following criteria:
 6. **Language Attribute** - Specification of language
 7. **Transcripts/Captions** - Accessibility for multimedia elements
 
+## Running Tests
+
+The test suite uses `pytest`.
+
+```bash
+pytest
+```
+
+Run the command from the repository root after installing the requirements.
+
 ## License
 
 MIT
