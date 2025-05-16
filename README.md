@@ -74,3 +74,12 @@ The tool evaluates websites based on the following criteria:
 ## License
 
 MIT
+
+## Running Tests
+
+Install pytest and run:
+```bash
+pip install pytest
+pytest
+```
+
