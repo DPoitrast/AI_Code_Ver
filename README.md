@@ -84,3 +84,12 @@ Run the command from the repository root after installing the requirements.
 ## License
 
 MIT
+
+## Running Tests
+
+Install pytest and run:
+```bash
+pip install pytest
+pytest
+```
+
