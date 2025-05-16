@@ -13,7 +13,7 @@ def check_semantic_html(soup):
 def check_schema_markup(soup):
     # Simple check: look for JSON-LD scripts containing 'schema.org'
     schema = soup.find_all("script", type="application/ld+json")
-    found = any("schema.org" in script.text for script in schema)
+    found = any("schema.org" in script.text.lower() for script in schema)
     return found, "Schema.org markup present." if found else "Add Schema.org structured data."
 
 def check_headings_structure(soup):
@@ -23,8 +23,10 @@ def check_headings_structure(soup):
 
 def check_alt_text(soup):
     images = soup.find_all("img")
+    if not images:
+        return True, "No images found."
     images_missing_alt = [img for img in images if not img.has_attr('alt') or not img['alt'].strip()]
-    found = len(images_missing_alt) == 0 and len(images) > 0
+    found = len(images_missing_alt) == 0
     return found, "All images have alt text." if found else f"{len(images_missing_alt)} images missing alt text."
 
 def check_lists_and_tables(soup):
