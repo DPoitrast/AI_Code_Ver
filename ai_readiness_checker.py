@@ -186,33 +186,53 @@ def main():
     parser = argparse.ArgumentParser(
         description="AI-Readiness Website Evaluator - Analyze websites for AI accessibility best practices"
     )
-    parser.add_argument("url", help="URL of the website to analyze")
-    parser.add_argument("-o", "--output", help="Output file path for JSON results")
+    parser.add_argument("urls", nargs="*", help="URL(s) of the website(s) to analyze")
+    parser.add_argument("--urls-file", help="Path to a file containing URLs to analyze")
+    parser.add_argument("-o", "--output", help="Output directory for JSON results")
     parser.add_argument("-v", "--verbose", action="store_true", help="Enable verbose output")
+    parser.add_argument("--summary", action="store_true", help="Display summary after analyzing multiple URLs")
     
     args = parser.parse_args()
-    
-    # Analyze website
-    results = analyze_website(args.url, args.verbose)
-    
-    # Print report
-    print_report(results)
-    
-    # Save to file if requested
-    if args.output:
-        with open(args.output, 'w') as f:
-            json.dump(results, f, indent=2)
-        print(f"\nFull results saved to {args.output}")
-    else:
-        # Default output file in the reports directory
-        os.makedirs("reports", exist_ok=True)
+
+    urls = []
+    if args.urls:
+        urls.extend(args.urls)
+    if args.urls_file:
+        try:
+            with open(args.urls_file) as f:
+                urls.extend([line.strip() for line in f if line.strip()])
+        except OSError as e:
+            parser.error(f"Failed to read --urls-file: {e}")
+
+    if not urls:
+        parser.error("No URLs provided. Specify URLs as arguments or use --urls-file.")
+
+    output_dir = args.output or "reports"
+    os.makedirs(output_dir, exist_ok=True)
+
+    results_list = []
+
+    for url in urls:
+        results = analyze_website(url, args.verbose)
+        print_report(results)
+
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-        domain = args.url.replace("http://", "").replace("https://", "").replace("/", "_").strip("_")
-        filename = f"reports/{domain}_{timestamp}.json"
-        
+        domain = url.replace("http://", "").replace("https://", "").replace("/", "_").strip("_")
+        filename = f"{output_dir}/{domain}_{timestamp}.json"
+
         with open(filename, 'w') as f:
             json.dump(results, f, indent=2)
         print(f"\nFull results saved to {filename}")
+
+        results_list.append(results)
+
+    if args.summary and len(results_list) > 1:
+        print("\n" + "=" * 70)
+        print(f"{Colors.BOLD}Summary of Scores{Colors.END}")
+        for r in results_list:
+            print(f"- {r['url']}: {r['score']:.1f}% ({r['passed']}/{r['total']} passed)")
+        avg = sum(r['score'] for r in results_list) / len(results_list)
+        print(f"Average score: {avg:.1f}%")
 
 if __name__ == "__main__":
     main()

@@ -37,18 +37,26 @@ chmod +x ai_readiness_checker.py
 
 ### Command-line interface
 
+Analyze one or more URLs directly on the command line or provide a file containing URLs:
+
 ```bash
-./ai_readiness_checker.py https://example.com
+./ai_readiness_checker.py https://example.com https://example.org --summary
+```
+
+```bash
+./ai_readiness_checker.py --urls-file urls.txt -v
 ```
 
 ### Options
 
-- `-o, --output`: Specify output file path for JSON results
-- `-v, --verbose`: Enable verbose output
+- `-o, --output` &ndash; Directory where JSON reports will be saved (default: `./reports`)
+- `-v, --verbose` &ndash; Enable verbose output
+- `--urls-file` &ndash; Path to a text file with one URL per line
+- `--summary` &ndash; Display a summary of scores when analyzing multiple URLs
 
 Example:
 ```bash
-./ai_readiness_checker.py https://example.com -o results.json -v
+./ai_readiness_checker.py https://example.com https://example.org -o reports --summary
 ```
 
 ## Web Interface (Optional)
@@ -74,3 +82,4 @@ The tool evaluates websites based on the following criteria:
 ## License
 
 MIT
+
