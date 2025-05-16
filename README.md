@@ -23,22 +23,19 @@ git clone https://github.com/DPoitrast/AI_Code_Ver.git
 cd ai-code-verification
 ```
 
-2. Install dependencies:
+2. Install in editable mode (recommended for development):
 ```bash
-pip install -r requirements.txt
+pip install -e .
 ```
 
-3. Make the script executable:
-```bash
-chmod +x ai_readiness_checker.py
-```
+This will install the `ai-readiness-checker` CLI entry point.
 
 ## Usage
 
 ### Command-line interface
 
 ```bash
-./ai_readiness_checker.py https://example.com
+ai-readiness-checker https://example.com
 ```
 
 ### Options
@@ -48,7 +45,7 @@ chmod +x ai_readiness_checker.py
 
 Example:
 ```bash
-./ai_readiness_checker.py https://example.com -o results.json -v
+ai-readiness-checker https://example.com -o results.json -v
 ```
 
 ## Web Interface (Optional)
