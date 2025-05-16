@@ -20,7 +20,7 @@ A tool that evaluates websites for AI-readiness and accessibility best practices
 1. Clone this repository:
 ```bash
 git clone https://github.com/DPoitrast/AI_Code_Ver.git
-cd ai-code-verification
+cd AI_Code_Ver
 ```
 
 2. Install dependencies:
