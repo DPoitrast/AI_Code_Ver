@@ -8,7 +8,8 @@ A tool that evaluates websites for AI-readiness and accessibility best practices
 - Provides specific recommendations for improvement
 - Displays an overall score and detailed breakdown by category
 - Command-line interface with colorful output
-- Saves reports in JSON format for further analysis
+- Automatically saves JSON reports to the `reports/` directory when an output path is not provided
+- Streamlit web interface with additional SEO, internationalization and performance checks (viewport meta, canonical links, social meta tags, hreflang, resource count, lazy loading, caching headers and page weight)
 
 ## Requirements
 
@@ -84,12 +85,4 @@ Run the command from the repository root after installing the requirements.
 ## License
 
 MIT
-
-## Running Tests
-
-Install pytest and run:
-```bash
-pip install pytest
-pytest
-```
 
